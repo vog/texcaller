@@ -57,6 +57,8 @@
  *  - <a href="http://tug.ctan.org/pkg/latexmk">latexmk</a> (CTAN)
  *  - <a href="http://tug.ctan.org/pkg/mk">mk</a> (CTAN)
  *  - <a href="http://latex-mk.sourceforge.net/">LaTeX-Mk</a>
+ *  - <a href="http://obrecht.fr/texwrapper/">TeXwrapper</a>
+ *  - <a href="http://pyx.sourceforge.net/manual/node24.html">PyX / texrunner</a>
  *  - <a href="https://bitbucket.org/nmandery/python-pdflatex/">python-pdflatex</a>
  *
  *  \defgroup libtexcaller Texcaller library
