@@ -1,7 +1,5 @@
 /*! \mainpage Texcaller
  *
- *  \section Overview
- *
  *  Texcaller is a convenient interface to the
  *  <a href="http://www.tug.org/">TeX</a>
  *  command line tools
@@ -21,7 +19,11 @@
  *  \skip texcaller
  *  \until ;
  *
- *  \section License
+ *  - \subpage license
+ *
+ *  - \subpage similar
+ *
+ *  \page license License
  *
  *  Copyright © 2010 <a href="http://www.profv.de/">Volker Grabsch</a>
  *
@@ -44,7 +46,7 @@
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  *  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  \section similar Similar projects
+ *  \page similar Similar projects
  *
  *  Texcaller doesn't suit your needs?
  *  Perhaps one of the following projects does.
