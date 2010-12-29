@@ -1,6 +1,8 @@
 VERSION = 0.1
 
 PREFIX = /usr/local
+UPLOAD_DEST = www.profv.de:texcaller/
+
 CROSS =
 AR = $(CROSS)ar
 CC = $(CROSS)gcc
@@ -41,3 +43,14 @@ install: all
 	  echo 'Libs: -L$(PREFIX)/lib -ltexcaller'; \
 	  echo 'Cflags: -I$(PREFIX)/include'; \
 	) > '$(PREFIX)'/lib/pkgconfig/texcaller.pc
+
+.PHONY: upload-release
+upload-release: all
+	rm -rf              .build/release
+	mkdir -p            .build/release/texcaller-$(VERSION)/
+	cp -Rp Makefile src .build/release/texcaller-$(VERSION)/
+	cd .build/release && tar -cf - */ | gzip -9 > texcaller-$(VERSION).tar.gz
+	rsync -rtvz --delete -f 'protect *.tar*' --chmod=u=rwX,go= \
+	    .build/release/*.tar* \
+	    .build/result/share/doc/texcaller/ \
+	    $(UPLOAD_DEST)
