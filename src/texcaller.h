@@ -35,6 +35,15 @@
 git clone https://github.com/vog/texcaller.git
 \endverbatim
  *
+ *  \section release-0_1 Release 0.1
+ *
+ *  <a href="http://www.profv.de/texcaller/texcaller-0.1.tar.gz">Download</a> |
+ *  <a href="https://github.com/vog/texcaller/commits/0.1">ChangeLog</a>
+ *
+ *  This is the first release.
+ *  It started as a reimplementation of
+ *  <a href="http://pypi.python.org/pypi/tex">python-tex</a> 1.7.
+ *
  *  \page license License
  *
  *  Copyright © 2010, 2011
