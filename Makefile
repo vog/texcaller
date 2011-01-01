@@ -1,4 +1,4 @@
-VERSION := 0.1
+VERSION := $(shell git describe --always)
 
 PREFIX := /usr/local
 UPLOAD_DEST := www.profv.de:texcaller/
@@ -46,9 +46,12 @@ install: all
 
 .PHONY: upload-release
 upload-release: all
-	rm -rf              .build/release
-	mkdir -p            .build/release/texcaller-$(VERSION)/
-	cp -Rp Makefile src .build/release/texcaller-$(VERSION)/
+	rm -rf     .build/release
+	mkdir -p   .build/release/texcaller-$(VERSION)/
+	cp -Rp src .build/release/texcaller-$(VERSION)/
+	( echo 'VERSION := $(VERSION)'; \
+	  tail -n +2 Makefile; \
+	) > .build/release/texcaller-$(VERSION)/Makefile
 	cd .build/release && tar -cf - */ | gzip -9 > texcaller-$(VERSION).tar.gz
 	rsync -rtvz --delete -f 'protect *.tar*' --chmod=u=rwX,go= \
 	    .build/release/*.tar* \
