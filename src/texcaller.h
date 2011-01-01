@@ -19,9 +19,21 @@
  *  \skip texcaller
  *  \until ;
  *
+ *  - \subpage download
+ *
  *  - \subpage license
  *
  *  - \subpage similar
+ *
+ *  \page download Download
+ *
+ *  \section development Development version
+ *
+ *  <a href="https://github.com/vog/texcaller">Texcaller on GitHub</a>
+ *
+ *  \verbatim
+git clone https://github.com/vog/texcaller.git
+\endverbatim
  *
  *  \page license License
  *
