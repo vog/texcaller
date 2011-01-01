@@ -1,13 +1,13 @@
-VERSION = 0.1
+VERSION := 0.1
 
-PREFIX = /usr/local
-UPLOAD_DEST = www.profv.de:texcaller/
+PREFIX := /usr/local
+UPLOAD_DEST := www.profv.de:texcaller/
 
-CROSS =
-AR = $(CROSS)ar
-CC = $(CROSS)gcc
-CFLAGS = -O3 -ansi -pedantic -W -Wall -Werror
-TEXCALLER_CFLAGS = -I.build/result/include -L.build/result/lib -ltexcaller
+CROSS :=
+AR := $(CROSS)ar
+CC := $(CROSS)gcc
+CFLAGS := -O3 -ansi -pedantic -W -Wall -Werror
+TEXCALLER_CFLAGS := -I.build/result/include -L.build/result/lib -ltexcaller
 
 .PHONY: all
 all: .build/.done
