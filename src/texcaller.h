@@ -2,10 +2,10 @@
  *
  *  Texcaller is a convenient interface to the
  *  <a href="http://www.tug.org/">TeX</a>
- *  command line tools
- *  that handles all kinds of errors without much fuzz.
+ *  command line tools.
+ *  It handles all kinds of errors without much fuzz.
  *  It is written in plain C,
- *  is fairly portable
+ *  is fairly portable,
  *  and has no external dependencies
  *  besides TeX.
  *
