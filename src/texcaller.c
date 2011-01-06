@@ -78,7 +78,7 @@ static char *sprintf_alloc(const char *format, ...)
     va_start(ap, format);
     len = vsnprintf(tmp_result, sizeof(tmp_result), format, ap);
     va_end(ap);
-    if (len <= 0) {
+    if (len < 0) {
         return NULL;
     }
     /* allocate memory for result */
