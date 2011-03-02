@@ -41,7 +41,7 @@ install-doc: .build/doc.ok
 	$(INSTALL) -m644 .build/doc/* '$(PREFIX)'/share/doc/texcaller/
 
 # c
-.build/c.ok: src/texcaller.h src/texcaller.c
+.build/c.ok: src/texcaller.c src/texcaller.h
 	rm -fr   .build/c
 	mkdir -p .build/c
 	$(CC) $(CFLAGS) -c -o .build/c/texcaller.o src/texcaller.c
