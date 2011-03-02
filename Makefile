@@ -73,8 +73,7 @@ install-c: .build/c.ok
 	touch $@
 
 check-shell: .build/shell.ok
-	cp src/example.sh .build/shell/
-	cd .build/shell && PATH=".:$$PATH" sh -eu example.sh
+	cd .build/shell && PATH=".:$$PATH" sh -eu ../../src/example.sh
 	[ -s .build/shell/hello.pdf ]
 
 install-shell: .build/shell.ok
