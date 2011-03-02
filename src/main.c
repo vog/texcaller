@@ -1,4 +1,4 @@
-/*! \defgroup texcaller Texcaller command line tool
+/*! \defgroup shell Texcaller Shell interface
  *
  *  \par Synopsis
  *
@@ -12,11 +12,12 @@ texcaller SRC_FORMAT DEST_FORMAT MAX_RUNS <SRC >DEST
  *
  *  \par Description
  *
- *  The \c texcaller tool is a simple command line wrapper
+ *  The \c texcaller binary is a simple command line tool
  *  around the texcaller_convert() library function.
  *
- *  Thus, it is an alternative command line interface to
- *  <a href="http://www.tug.org/">TeX</a>.
+ *  It is an alternative, simpler command line interface for
+ *  <a href="http://www.tug.org/">TeX</a>
+ *  to be used in shell scripts.
  *
  *  It reads the source document from standard input
  *  and writes the result document to standard output.

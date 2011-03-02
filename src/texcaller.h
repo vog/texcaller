@@ -9,11 +9,11 @@
  *  and has no external dependencies
  *  besides TeX.
  *
- *  - \ref texcaller
+ *  - \ref shell
  *  \dontinclude example.sh
  *  \skipline texcaller
  *
- *  - \ref libtexcaller
+ *  - \ref c
  *  \dontinclude example.c
  *  \skipline texcaller
  *  ...
@@ -84,7 +84,7 @@ git clone https://github.com/vog/texcaller.git
  *  - <a href="http://pyx.sourceforge.net/manual/node24.html">PyX / texrunner</a>
  *  - <a href="https://bitbucket.org/nmandery/python-pdflatex/">python-pdflatex</a>
  *
- *  \defgroup libtexcaller Texcaller library
+ *  \defgroup c Texcaller C interface
  *
  *  The Texcaller library is a convenient C interface to the
  *  <a href="http://www.tug.org/">TeX</a>
