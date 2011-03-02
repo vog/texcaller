@@ -1,9 +1,9 @@
 /* See texcaller.h for copyright information and documentation. */
 
-/*! \addtogroup libtexcaller
+/*! \addtogroup c
  *  @{
  *
- *  \defgroup libtexcaller_internals Internals of the Texcaller library
+ *  \defgroup c_internals Internals of the Texcaller C interface
  *  @{
  */
 
