@@ -10,7 +10,8 @@
  *  besides TeX.
  *
  *  - \ref texcaller
- *  \include example.sh
+ *  \dontinclude example.sh
+ *  \skipline texcaller
  *
  *  - \ref libtexcaller
  *  \dontinclude example.c
