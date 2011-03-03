@@ -20,6 +20,11 @@
  *  \skip texcaller
  *  \until ;
  *
+ *  - \ref postgresql
+ *  \dontinclude example.sql
+ *  \skip select
+ *  \until ;
+ *
  *  - \subpage download
  *
  *  - \subpage license

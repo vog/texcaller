@@ -1,6 +1,6 @@
 VERSION := $(shell git describe --always)
 
-PARTS := doc c shell
+PARTS := doc c shell postgresql
 PREFIX := /usr/local
 UPLOAD_DEST := www.profv.de:texcaller/
 
@@ -79,6 +79,37 @@ check-shell: .build/shell.ok
 install-shell: .build/shell.ok
 	$(INSTALL) -d '$(PREFIX)'/bin
 	$(INSTALL) -m755 .build/shell/texcaller '$(PREFIX)'/bin/
+
+# postgresql
+.build/postgresql.ok: .build/c.ok src/texcaller_postgresql.c src/texcaller.sql
+	rm -fr   .build/postgresql
+	mkdir -p .build/postgresql
+	cp src/texcaller_postgresql.c .build/postgresql/texcaller.c
+	( echo 'MODULE_big = texcaller'; \
+	  echo 'OBJS := texcaller.o'; \
+	  echo 'DATA := ../../src/texcaller.sql'; \
+	  echo 'PG_CPPFLAGS := -I../../src'; \
+	  echo 'SHLIB_LINK := -L../c -ltexcaller'; \
+	  echo 'PG_CONFIG := pg_config'; \
+	  echo 'PGXS := $$(shell $$(PG_CONFIG) --pgxs)'; \
+	  echo 'include $$(PGXS)'; \
+	) > .build/postgresql/Makefile
+	$(MAKE) -C .build/postgresql
+	touch $@
+
+check-postgresql: .build/postgresql.ok
+	# ensure that texcaller.so is accessible by PostgreSQL
+	$(MAKE) -C .build/postgresql install-lib
+	# use the "template1" database because it is always there,
+	# rolling back the transaction so the database won't be modified
+	( echo 'start transaction;'; \
+	  cat src/texcaller.sql; \
+	  cat src/example.sql; \
+	  echo 'rollback;'; \
+	) | psql -v ON_ERROR_STOP=1 -f - template1
+
+install-postgresql: .build/postgresql.ok
+	$(MAKE) -C .build/postgresql install
 
 # others
 clean:
