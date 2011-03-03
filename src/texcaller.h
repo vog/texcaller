@@ -147,13 +147,13 @@ extern "C" {
  *  Instead, all important information is simply collected
  *  in the \c info string.
  *
- *  \param dest
+ *  \param result
  *      will be set to a newly allocated buffer that contains
  *      the generated document,
  *      or \c NULL if an error occured.
  *
- *  \param dest_size
- *      will be set to the size of \c dest, or 0 if \c dest is \c NULL.
+ *  \param result_size
+ *      will be set to the size of \c result, or 0 if \c result is \c NULL.
  *
  *  \param info
  *      will be set to a newly allocated string that contains
@@ -161,7 +161,7 @@ extern "C" {
  *      an error message or TeX warnings.
  *      When out of memory,
  *      \c info will be set to \c NULL
- *      (and \c dest will be set to \c NULL, too).
+ *      (and \c result will be set to \c NULL, too).
  *
  *  \param src
  *      source to be converted
@@ -174,8 +174,8 @@ extern "C" {
  *      - \c "TeX"
  *      - \c "LaTeX"
  *
- *  \param dest_format
- *      destination format, must be one of:
+ *  \param result_format
+ *      result format, must be one of:
  *      - \c "DVI"
  *      - \c "PDF"
  *
@@ -183,9 +183,9 @@ extern "C" {
  *      maximum number of runs of the command \c cmd,
  *      must be ≥ 2.
  *      If the output hasn't stabilized after \c max_runs runs,
- *      the function will fail and \c dest will be set to \c NULL.
+ *      the function will fail and \c result will be set to \c NULL.
  */
-void texcaller_convert(char **dest, size_t *dest_size, char **info, const char *src, size_t src_size, const char *src_format, const char *dest_format, int max_runs);
+void texcaller_convert(char **result, size_t *result_size, char **info, const char *src, size_t src_size, const char *src_format, const char *result_format, int max_runs);
 
 /*! Escape a string for direct use in LaTeX.
  *

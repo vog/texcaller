@@ -165,18 +165,18 @@ static int remove_directory_recursively(char **error, const char *dirname)
 
 /*! Read a file completely into a buffer that can be used as a string.
  *
- *  \param dest
+ *  \param result
  *      will be set to a newly allocated buffer that contains
  *      the complete content of the file,
  *      with a \c '\\0' added to the end.
  *      If an error occured,
- *      \c dest will be set to \c NULL.
+ *      \c result will be set to \c NULL.
  *
- *  \param dest_size
- *      will be set to the size of \c dest,
+ *  \param result_size
+ *      will be set to the size of \c result,
  *      not counting the added \c '\\0'.
  *      If an error occured,
- *      \c dest_size will be set to \c 0.
+ *      \c result_size will be set to \c 0.
  *
  *  \param error
  *      On failure, \c error will be set to a newly allocated string
@@ -187,12 +187,12 @@ static int remove_directory_recursively(char **error, const char *dirname)
  *  \param path
  *      path of the file to read
  */
-static void read_file(char **dest, size_t *dest_size, char **error, const char *path)
+static void read_file(char **result, size_t *result_size, char **error, const char *path)
 {
     FILE *file;
     long file_size;
     size_t read_size;
-    *dest = NULL;
+    *result = NULL;
     *error = NULL;
     file = fopen(path, "rb");
     if (file == NULL) {
@@ -211,28 +211,28 @@ static void read_file(char **dest, size_t *dest_size, char **error, const char *
                                path, strerror(errno));
         goto error_cleanup;
     }
-    *dest_size = file_size;
+    *result_size = file_size;
     if (fseek(file, 0, SEEK_SET) != 0) {
         *error = sprintf_alloc("Unable to seek back to start of file \"%s\": %s.",
                                path, strerror(errno));
         goto error_cleanup;
     }
-    *dest = malloc(*dest_size + 1);
-    if (*dest == NULL) {
+    *result = malloc(*result_size + 1);
+    if (*result == NULL) {
         *error = sprintf_alloc("Unable to allocate buffer for reading file \"%s\": %s.",
                                path, strerror(errno));
         goto error_cleanup;
     }
-    (*dest)[*dest_size] = '\0';
-    read_size = fread(*dest, 1, *dest_size, file);
+    (*result)[*result_size] = '\0';
+    read_size = fread(*result, 1, *result_size, file);
     if (ferror(file)) {
         *error = sprintf_alloc("Unable to read %lu bytes from file \"%s\": %s.",
-                               (unsigned long)*dest_size, path, strerror(errno));
+                               (unsigned long)*result_size, path, strerror(errno));
         goto error_cleanup;
     }
-    if (read_size != *dest_size) {
+    if (read_size != *result_size) {
         *error = sprintf_alloc("Unable to read %lu bytes from file \"%s\": Got only %lu bytes.",
-                               (unsigned long)*dest_size, path, (unsigned long)read_size);
+                               (unsigned long)*result_size, path, (unsigned long)read_size);
         goto error_cleanup;
     }
     if (fclose(file) != 0) {
@@ -243,9 +243,9 @@ static void read_file(char **dest, size_t *dest_size, char **error, const char *
     }
     return;
 error_cleanup:
-    free(*dest);
-    *dest = NULL;
-    *dest_size = 0;
+    free(*result);
+    *result = NULL;
+    *result_size = 0;
     if (file != NULL) {
         fclose(file);
     }
@@ -313,7 +313,7 @@ error_cleanup:
 
 /*! Convert a TeX or LaTeX source to DVI or PDF.
  */
-void texcaller_convert(char **dest, size_t *dest_size, char **info, const char *src, size_t src_size, const char *src_format, const char *dest_format, int max_runs)
+void texcaller_convert(char **result, size_t *result_size, char **info, const char *src, size_t src_size, const char *src_format, const char *result_format, int max_runs)
 {
     char *error;
     char *cmd;
@@ -323,27 +323,27 @@ void texcaller_convert(char **dest, size_t *dest_size, char **info, const char *
     char *src_filename = NULL;
     char *aux_filename = NULL;
     char *log_filename = NULL;
-    char *dest_filename = NULL;
+    char *result_filename = NULL;
     char *aux = NULL;
     size_t aux_size = 0;
     char *aux_old = NULL;
     size_t aux_old_size = 0;
     int runs;
-    *dest = NULL;
-    *dest_size = 0;
+    *result = NULL;
+    *result_size = 0;
     *info = NULL;
     /* check arguments */
-    if        (strcmp(src_format, "TeX") == 0 && strcmp(dest_format, "DVI") == 0) {
+    if        (strcmp(src_format, "TeX") == 0 && strcmp(result_format, "DVI") == 0) {
         cmd = "tex";
-    } else if (strcmp(src_format, "TeX") == 0 && strcmp(dest_format, "PDF") == 0) {
+    } else if (strcmp(src_format, "TeX") == 0 && strcmp(result_format, "PDF") == 0) {
         cmd = "pdftex";
-    } else if (strcmp(src_format, "LaTeX") == 0 && strcmp(dest_format, "DVI") == 0) {
+    } else if (strcmp(src_format, "LaTeX") == 0 && strcmp(result_format, "DVI") == 0) {
         cmd = "latex";
-    } else if (strcmp(src_format, "LaTeX") == 0 && strcmp(dest_format, "PDF") == 0) {
+    } else if (strcmp(src_format, "LaTeX") == 0 && strcmp(result_format, "PDF") == 0) {
         cmd = "pdflatex";
     } else {
         *info = sprintf_alloc("Unable to convert from \"%s\" to \"%s\".",
-                              src_format, dest_format);
+                              src_format, result_format);
         goto cleanup;
     }
     if (max_runs < 2) {
@@ -378,12 +378,12 @@ void texcaller_convert(char **dest, size_t *dest_size, char **info, const char *
     if (log_filename == NULL) {
         goto cleanup;
     }
-    if (strcmp(dest_format, "DVI") == 0) {
-        dest_filename = sprintf_alloc("%s/texput.dvi", dir);
+    if (strcmp(result_format, "DVI") == 0) {
+        result_filename = sprintf_alloc("%s/texput.dvi", dir);
     } else {
-        dest_filename = sprintf_alloc("%s/texput.pdf", dir);
+        result_filename = sprintf_alloc("%s/texput.pdf", dir);
     }
-    if (dest_filename == NULL) {
+    if (result_filename == NULL) {
         goto cleanup;
     }
     /* create source file */
@@ -453,14 +453,14 @@ void texcaller_convert(char **dest, size_t *dest_size, char **info, const char *
         /* check whether aux file stabilized,
            which is also true if there isn't and wasn't any aux file */
         if (aux_size == aux_old_size && memcmp(aux, aux_old, aux_size) == 0) {
-            read_file(dest, dest_size, &error, dest_filename);
-            if (*dest == NULL) {
+            read_file(result, result_size, &error, result_filename);
+            if (*result == NULL) {
                 *info = error;
                 goto cleanup;
             }
             *info = sprintf_alloc("Generated %s (%lu bytes)"
                                   " from %s (%lu bytes) after %i runs.",
-                                  dest_format, (unsigned long)*dest_size,
+                                  result_format, (unsigned long)*result_size,
                                   src_format, (unsigned long)src_size, runs);
             goto cleanup;
         }
@@ -488,9 +488,9 @@ cleanup:
         }
     }
     if (dir != NULL && remove_directory_recursively(&error, dir) != 0) {
-        free(*dest);
-        *dest = NULL;
-        *dest_size = 0;
+        free(*result);
+        *result = NULL;
+        *result_size = 0;
         free(*info);
         *info = error;
     }
@@ -498,7 +498,7 @@ cleanup:
     free(src_filename);
     free(aux_filename);
     free(log_filename);
-    free(dest_filename);
+    free(result_filename);
     free(aux);
     free(aux_old);
 }

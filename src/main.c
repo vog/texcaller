@@ -37,7 +37,7 @@ texcaller SRC_FORMAT DEST_FORMAT MAX_RUNS <SRC >DEST
 int main(int argc, char *argv[])
 {
     const char *src_format;
-    const char *dest_format;
+    const char *result_format;
     int max_runs;
 
     char *src;
@@ -45,8 +45,8 @@ int main(int argc, char *argv[])
     size_t read_size;
     const size_t src_size_increment = 4096;
 
-    char *dest;
-    size_t dest_size;
+    char *result;
+    size_t result_size;
     char *info;
 
     /* command line arguments */
@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
         return 1;
     }
     src_format = argv[1];
-    dest_format = argv[2];
+    result_format = argv[2];
     max_runs = atoi(argv[3]);
 
     /* stdin -> src */
@@ -79,8 +79,8 @@ int main(int argc, char *argv[])
     }
 
     /* run tex */
-    texcaller_convert(&dest, &dest_size, &info,
-                      src, src_size, src_format, dest_format, max_runs);
+    texcaller_convert(&result, &result_size, &info,
+                      src, src_size, src_format, result_format, max_runs);
 
     /* cleanup */
     free(src);
@@ -90,15 +90,15 @@ int main(int argc, char *argv[])
     free(info);
 
     /* output -> stdout */
-    if (dest == NULL) {
+    if (result == NULL) {
         return 1;
     }
-    if (fwrite(dest, 1, dest_size, stdout) != dest_size) {
+    if (fwrite(result, 1, result_size, stdout) != result_size) {
         fprintf(stderr, "Unable to output %lu bytes: %s.\n",
-                (unsigned long)dest_size, strerror(errno));
-        free(dest);
+                (unsigned long)result_size, strerror(errno));
+        free(result);
         return 1;
     }
-    free(dest);
+    free(result);
     return 0;
 }

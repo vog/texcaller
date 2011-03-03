@@ -1,5 +1,5 @@
 create function
-texcaller_convert(src text, src_format text, dest_format text, max_runs integer) returns bytea stable strict
+texcaller_convert(src text, src_format text, result_format text, max_runs integer) returns bytea stable strict
 language c as '$libdir/texcaller', 'postgresql_texcaller_convert';
 
 create function

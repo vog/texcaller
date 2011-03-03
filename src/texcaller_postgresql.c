@@ -45,26 +45,26 @@ Datum postgresql_texcaller_escape_latex(PG_FUNCTION_ARGS);
 PG_FUNCTION_INFO_V1(postgresql_texcaller_convert);
 Datum postgresql_texcaller_convert(PG_FUNCTION_ARGS)
 {
-    char *dest;
-    size_t dest_size;
+    char *native_result;
+    size_t native_result_size;
     char *info;
     text *src;
     char *src_format;
-    char *dest_format;
+    char *result_format;
     int max_runs;
     bytea *result;
     /* load arguments */
     src = PG_GETARG_TEXT_P(0);
     src_format = text_to_cstring(PG_GETARG_TEXT_P(1));
-    dest_format = text_to_cstring(PG_GETARG_TEXT_P(2));
+    result_format = text_to_cstring(PG_GETARG_TEXT_P(2));
     max_runs = PG_GETARG_INT32(3);
     /* call function */
-    texcaller_convert(&dest, &dest_size, &info,
+    texcaller_convert(&native_result, &native_result_size, &info,
                       VARDATA(src), VARSIZE(src) - VARHDRSZ,
-                      src_format, dest_format, max_runs);
+                      src_format, result_format, max_runs);
     /* free arguments */
     pfree(src_format);
-    pfree(dest_format);
+    pfree(result_format);
     /* show info as NOTICE */
     if (info == NULL) {
         ereport(ERROR,
@@ -75,14 +75,14 @@ Datum postgresql_texcaller_convert(PG_FUNCTION_ARGS)
     ereport(NOTICE,
             (errmsg_internal(info)));
     free(info);
-    /* return dest */
-    if (dest == NULL) {
+    /* return result */
+    if (native_result == NULL) {
         PG_RETURN_NULL();
     }
-    result = palloc(VARHDRSZ + dest_size);
-    SET_VARSIZE(result, VARHDRSZ + dest_size);
-    memcpy(VARDATA(result), dest, dest_size);
-    free(dest);
+    result = palloc(VARHDRSZ + native_result_size);
+    SET_VARSIZE(result, VARHDRSZ + native_result_size);
+    memcpy(VARDATA(result), native_result, native_result_size);
+    free(native_result);
     PG_RETURN_BYTEA_P(result);
 }
 
