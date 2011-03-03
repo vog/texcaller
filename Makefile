@@ -84,9 +84,9 @@ install-shell: .build/shell.ok
 .build/postgresql.ok: .build/c.ok src/texcaller_postgresql.c src/texcaller.sql
 	rm -fr   .build/postgresql
 	mkdir -p .build/postgresql
-	cp src/texcaller_postgresql.c .build/postgresql/texcaller.c
+	cp src/texcaller_postgresql.c .build/postgresql/
 	( echo 'MODULE_big = texcaller'; \
-	  echo 'OBJS := texcaller.o'; \
+	  echo 'OBJS := texcaller_postgresql.o'; \
 	  echo 'DATA := ../../src/texcaller.sql'; \
 	  echo 'PG_CPPFLAGS := -I../../src'; \
 	  echo 'SHLIB_LINK := -L../c -ltexcaller'; \
