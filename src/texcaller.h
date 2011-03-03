@@ -164,23 +164,23 @@ extern "C" {
  *      (and \c result will be set to \c NULL, too).
  *
  *  \param source
- *      source to be converted
+ *      the source to convert
  *
  *  \param source_size
  *      size of \c source
  *
  *  \param source_format
- *      source format, must be one of:
+ *      must be one of:
  *      - \c "TeX"
  *      - \c "LaTeX"
  *
  *  \param result_format
- *      result format, must be one of:
+ *      must be one of:
  *      - \c "DVI"
  *      - \c "PDF"
  *
  *  \param max_runs
- *      maximum number of runs of the command \c cmd,
+ *      maximum number of TeX runs,
  *      must be ≥ 2.
  *      If the output hasn't stabilized after \c max_runs runs,
  *      the function will fail and \c result will be set to \c NULL.
