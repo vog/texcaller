@@ -36,14 +36,14 @@ texcaller SRC_FORMAT DEST_FORMAT MAX_RUNS <SRC >DEST
 
 int main(int argc, char *argv[])
 {
-    const char *src_format;
+    const char *source_format;
     const char *result_format;
     int max_runs;
 
-    char *src;
-    size_t src_size;
+    char *source;
+    size_t source_size;
     size_t read_size;
-    const size_t src_size_increment = 4096;
+    const size_t source_size_increment = 4096;
 
     char *result;
     size_t result_size;
@@ -54,36 +54,36 @@ int main(int argc, char *argv[])
         fprintf(stderr, "Usage: texcaller SRC_FORMAT DEST_FORMAT MAX_RUNS <SRC >DEST\n");
         return 1;
     }
-    src_format = argv[1];
+    source_format = argv[1];
     result_format = argv[2];
     max_runs = atoi(argv[3]);
 
-    /* stdin -> src */
-    src_size = 0;
-    src = NULL;
+    /* stdin -> source */
+    source_size = 0;
+    source = NULL;
     do {
-        char *new_src = realloc(src, src_size + src_size_increment);
-        if (new_src == NULL) {
-            free(src);
+        char *new_source = realloc(source, source_size + source_size_increment);
+        if (new_source == NULL) {
+            free(source);
             fprintf(stderr, "Out of memory.\n");
             return 1;
         }
-        src = new_src;
-        read_size = fread(src + src_size, 1, src_size_increment, stdin);
-        src_size += read_size;
-    } while (read_size == src_size_increment);
+        source = new_source;
+        read_size = fread(source + source_size, 1, source_size_increment, stdin);
+        source_size += read_size;
+    } while (read_size == source_size_increment);
     if (ferror(stdin)) {
-        free(src);
+        free(source);
         fprintf(stderr, "Unable to read from stdin: %s.\n", strerror(errno));
         return 1;
     }
 
     /* run tex */
     texcaller_convert(&result, &result_size, &info,
-                      src, src_size, src_format, result_format, max_runs);
+                      source, source_size, source_format, result_format, max_runs);
 
     /* cleanup */
-    free(src);
+    free(source);
 
     /* info -> stderr */
     fprintf(stderr, "%s\n", info == NULL ? "Out of memory." : info);

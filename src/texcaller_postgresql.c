@@ -48,22 +48,22 @@ Datum postgresql_texcaller_convert(PG_FUNCTION_ARGS)
     char *native_result;
     size_t native_result_size;
     char *info;
-    text *src;
-    char *src_format;
+    text *source;
+    char *source_format;
     char *result_format;
     int max_runs;
     bytea *result;
     /* load arguments */
-    src = PG_GETARG_TEXT_P(0);
-    src_format = text_to_cstring(PG_GETARG_TEXT_P(1));
+    source = PG_GETARG_TEXT_P(0);
+    source_format = text_to_cstring(PG_GETARG_TEXT_P(1));
     result_format = text_to_cstring(PG_GETARG_TEXT_P(2));
     max_runs = PG_GETARG_INT32(3);
     /* call function */
     texcaller_convert(&native_result, &native_result_size, &info,
-                      VARDATA(src), VARSIZE(src) - VARHDRSZ,
-                      src_format, result_format, max_runs);
+                      VARDATA(source), VARSIZE(source) - VARHDRSZ,
+                      source_format, result_format, max_runs);
     /* free arguments */
-    pfree(src_format);
+    pfree(source_format);
     pfree(result_format);
     /* show info as NOTICE */
     if (info == NULL) {

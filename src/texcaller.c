@@ -267,13 +267,13 @@ error_cleanup:
  *  \param path
  *      path of the file to write to
  *
- *  \param src
+ *  \param source
  *      buffer to write
  *
- *  \param src_size
- *      size of \c src
+ *  \param source_size
+ *      size of \c source
  */
-static int write_file(char **error, const char *path, const char *src, size_t src_size)
+static int write_file(char **error, const char *path, const char *source, size_t source_size)
 {
     FILE *file;
     size_t written_size;
@@ -284,15 +284,15 @@ static int write_file(char **error, const char *path, const char *src, size_t sr
                                path, strerror(errno));
         goto error_cleanup;
     }
-    written_size = fwrite(src, 1, src_size, file);
+    written_size = fwrite(source, 1, source_size, file);
     if (ferror(file)) {
         *error = sprintf_alloc("Unable to write %lu bytes to file \"%s\": %s.",
-                               (unsigned long)src_size, path, strerror(errno));
+                               (unsigned long)source_size, path, strerror(errno));
         goto error_cleanup;
     }
-    if (written_size != src_size) {
+    if (written_size != source_size) {
         *error = sprintf_alloc("Unable to write %lu bytes to file \"%s\": Only %lu bytes were written.",
-                               (unsigned long)src_size, path, (unsigned long)written_size);
+                               (unsigned long)source_size, path, (unsigned long)written_size);
         goto error_cleanup;
     }
     if (fclose(file) != 0) {
@@ -313,14 +313,14 @@ error_cleanup:
 
 /*! Convert a TeX or LaTeX source to DVI or PDF.
  */
-void texcaller_convert(char **result, size_t *result_size, char **info, const char *src, size_t src_size, const char *src_format, const char *result_format, int max_runs)
+void texcaller_convert(char **result, size_t *result_size, char **info, const char *source, size_t source_size, const char *source_format, const char *result_format, int max_runs)
 {
     char *error;
     char *cmd;
     char *tmpdir;
     char *dir = NULL;
     char *dir_template = NULL;
-    char *src_filename = NULL;
+    char *source_filename = NULL;
     char *aux_filename = NULL;
     char *log_filename = NULL;
     char *result_filename = NULL;
@@ -333,17 +333,17 @@ void texcaller_convert(char **result, size_t *result_size, char **info, const ch
     *result_size = 0;
     *info = NULL;
     /* check arguments */
-    if        (strcmp(src_format, "TeX") == 0 && strcmp(result_format, "DVI") == 0) {
+    if        (strcmp(source_format, "TeX") == 0 && strcmp(result_format, "DVI") == 0) {
         cmd = "tex";
-    } else if (strcmp(src_format, "TeX") == 0 && strcmp(result_format, "PDF") == 0) {
+    } else if (strcmp(source_format, "TeX") == 0 && strcmp(result_format, "PDF") == 0) {
         cmd = "pdftex";
-    } else if (strcmp(src_format, "LaTeX") == 0 && strcmp(result_format, "DVI") == 0) {
+    } else if (strcmp(source_format, "LaTeX") == 0 && strcmp(result_format, "DVI") == 0) {
         cmd = "latex";
-    } else if (strcmp(src_format, "LaTeX") == 0 && strcmp(result_format, "PDF") == 0) {
+    } else if (strcmp(source_format, "LaTeX") == 0 && strcmp(result_format, "PDF") == 0) {
         cmd = "pdflatex";
     } else {
         *info = sprintf_alloc("Unable to convert from \"%s\" to \"%s\".",
-                              src_format, result_format);
+                              source_format, result_format);
         goto cleanup;
     }
     if (max_runs < 2) {
@@ -366,8 +366,8 @@ void texcaller_convert(char **result, size_t *result_size, char **info, const ch
                               dir_template, strerror(errno));
         goto cleanup;
     }
-    src_filename = sprintf_alloc("%s/texput.tex", dir);
-    if (src_filename == NULL) {
+    source_filename = sprintf_alloc("%s/texput.tex", dir);
+    if (source_filename == NULL) {
         goto cleanup;
     }
     aux_filename = sprintf_alloc("%s/texput.aux", dir);
@@ -387,7 +387,7 @@ void texcaller_convert(char **result, size_t *result_size, char **info, const ch
         goto cleanup;
     }
     /* create source file */
-    if (write_file(&error, src_filename, src, src_size) != 0) {
+    if (write_file(&error, source_filename, source, source_size) != 0) {
         *info = error;
         goto cleanup;
     }
@@ -461,7 +461,7 @@ void texcaller_convert(char **result, size_t *result_size, char **info, const ch
             *info = sprintf_alloc("Generated %s (%lu bytes)"
                                   " from %s (%lu bytes) after %i runs.",
                                   result_format, (unsigned long)*result_size,
-                                  src_format, (unsigned long)src_size, runs);
+                                  source_format, (unsigned long)source_size, runs);
             goto cleanup;
         }
     }
@@ -495,7 +495,7 @@ cleanup:
         *info = error;
     }
     free(dir_template);
-    free(src_filename);
+    free(source_filename);
     free(aux_filename);
     free(log_filename);
     free(result_filename);

@@ -163,13 +163,13 @@ extern "C" {
  *      \c info will be set to \c NULL
  *      (and \c result will be set to \c NULL, too).
  *
- *  \param src
+ *  \param source
  *      source to be converted
  *
- *  \param src_size
- *      size of \c src
+ *  \param source_size
+ *      size of \c source
  *
- *  \param src_format
+ *  \param source_format
  *      source format, must be one of:
  *      - \c "TeX"
  *      - \c "LaTeX"
@@ -185,7 +185,7 @@ extern "C" {
  *      If the output hasn't stabilized after \c max_runs runs,
  *      the function will fail and \c result will be set to \c NULL.
  */
-void texcaller_convert(char **result, size_t *result_size, char **info, const char *src, size_t src_size, const char *src_format, const char *result_format, int max_runs);
+void texcaller_convert(char **result, size_t *result_size, char **info, const char *source, size_t source_size, const char *source_format, const char *result_format, int max_runs);
 
 /*! Escape a string for direct use in LaTeX.
  *
