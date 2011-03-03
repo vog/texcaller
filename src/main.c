@@ -1,3 +1,5 @@
+/* See texcaller.h for copyright information and documentation. */
+
 /*! \defgroup shell Texcaller Shell interface
  *
  *  \par Synopsis
