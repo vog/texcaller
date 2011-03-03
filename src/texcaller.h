@@ -1,5 +1,7 @@
 /*! \mainpage Texcaller
  *
+ *  \subpage download | \subpage license | \subpage similar
+ *
  *  Texcaller is a convenient interface to the
  *  <a href="http://www.tug.org/">TeX</a>
  *  command line tools.
@@ -24,12 +26,6 @@
  *  \dontinclude example.sql
  *  \skip select
  *  \until ;
- *
- *  - \subpage download
- *
- *  - \subpage license
- *
- *  - \subpage similar
  *
  *  \page download Download
  *
