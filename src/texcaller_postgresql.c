@@ -19,9 +19,8 @@
  *  typesetting
  *  into the world of relational databases.
  *
- *  Invalid TeX documents are handled gracefully,
- *  that is,
- *  \c texcaller_convert simply returns \c NULL
+ *  Invalid TeX documents are handled gracefully
+ *  by simply returning \c NULL
  *  rather than aborting with an error.
  *  On failure as well as on success,
  *  additional processing information is provided via
@@ -40,11 +39,11 @@
 
 PG_MODULE_MAGIC;
 
-Datum texcaller_postgresql_convert(PG_FUNCTION_ARGS);
-Datum texcaller_postgresql_escape_latex(PG_FUNCTION_ARGS);
+Datum postgresql_texcaller_convert(PG_FUNCTION_ARGS);
+Datum postgresql_texcaller_escape_latex(PG_FUNCTION_ARGS);
 
-PG_FUNCTION_INFO_V1(texcaller_postgresql_convert);
-Datum texcaller_postgresql_convert(PG_FUNCTION_ARGS)
+PG_FUNCTION_INFO_V1(postgresql_texcaller_convert);
+Datum postgresql_texcaller_convert(PG_FUNCTION_ARGS)
 {
     char *dest;
     size_t dest_size;
@@ -87,8 +86,8 @@ Datum texcaller_postgresql_convert(PG_FUNCTION_ARGS)
     PG_RETURN_BYTEA_P(result);
 }
 
-PG_FUNCTION_INFO_V1(texcaller_postgresql_escape_latex);
-Datum texcaller_postgresql_escape_latex(PG_FUNCTION_ARGS)
+PG_FUNCTION_INFO_V1(postgresql_texcaller_escape_latex);
+Datum postgresql_texcaller_escape_latex(PG_FUNCTION_ARGS)
 {
     char *s;
     char *native_result;
