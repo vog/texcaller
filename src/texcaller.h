@@ -92,8 +92,18 @@ git clone https://github.com/vog/texcaller.git
  *  - <a href="http://obrecht.fr/texwrapper/">TeXwrapper</a>
  *  - <a href="http://pyx.sourceforge.net/manual/node24.html">PyX / texrunner</a>
  *  - <a href="https://bitbucket.org/nmandery/python-pdflatex/">python-pdflatex</a>
- *
- *  \defgroup c Texcaller C interface
+ */
+
+#ifndef texcaller_3c67c51f1b9e45dea90acf18eb639723
+#define texcaller_3c67c51f1b9e45dea90acf18eb639723
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <stdlib.h>
+
+/*! \defgroup c Texcaller C interface
  *
  *  The Texcaller library is a convenient C interface to the
  *  <a href="http://www.tug.org/">TeX</a>
@@ -123,15 +133,6 @@ cc -o example example.c -ltexcaller
  *
  *  @{
  */
-
-#ifndef texcaller_3c67c51f1b9e45dea90acf18eb639723
-#define texcaller_3c67c51f1b9e45dea90acf18eb639723
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#include <stdlib.h>
 
 /*! Convert a TeX or LaTeX source to DVI or PDF.
  *
@@ -222,7 +223,7 @@ Téxt → {''}with{''} \$peciäl \textless{}characters\textgreater{}
  */
 char *texcaller_escape_latex(const char *s);
 
-/*!  @} */
+/*! @} */
 
 #ifdef __cplusplus
 }
