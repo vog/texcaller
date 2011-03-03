@@ -23,7 +23,9 @@ where
 -- generate a document on the fly, demonstrating how to escape user input
 select
     texcaller_convert(
-        '\documentclass{article}\begin{document}'
+        '\documentclass{article}'
+        || '\usepackage[utf8x]{inputenc}'
+        || '\begin{document}'
         || texcaller_escape_latex('Téxt → "with" $peciäl <characters>')
         || '\end{document}',
         'LaTeX', 'PDF', 5
