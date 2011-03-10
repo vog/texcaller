@@ -22,6 +22,13 @@
  *  \skip texcaller
  *  \until ;
  *
+ *  - \ref cxx
+ *  \dontinclude example.cxx
+ *  \skipline texcaller
+ *  ...
+ *  \skip texcaller
+ *  \until ;
+ *
  *  - \ref postgresql
  *  \dontinclude example.sql
  *  \skip select
@@ -36,6 +43,13 @@
  *  \verbatim
 git clone https://github.com/vog/texcaller.git
 \endverbatim
+ *
+ *  \section release-0_3 Release 0.3
+ *
+ *  <a href="http://www.profv.de/texcaller/texcaller-0.3.tar.gz">Download</a> |
+ *  <a href="https://github.com/vog/texcaller/commits/0.3">ChangeLog</a>
+ *
+ *  This release provides a C++ interface.
  *
  *  \section release-0_2 Release 0.2
  *
@@ -227,6 +241,126 @@ char *texcaller_escape_latex(const char *s);
 
 #ifdef __cplusplus
 }
+#endif
+
+#ifdef __cplusplus
+
+#include <string>
+#include <stdexcept>
+
+namespace texcaller
+{
+
+/*! \defgroup cxx Texcaller C++ interface
+ *
+ *  The \c texcaller.h header does not only provide the C functions,
+ *  but also the corresponding C++ wrappers.
+ *
+ *  The following example program demonstrates
+ *  how these are meant to be used:
+ *
+ *  \include example.cxx
+ *
+ *  Since the C++ wrappers are defined completely inline,
+ *  there is no need for an extra library.
+ *  The compiler and linker options of the \ref c
+ *  also work perfectly for C++:
+ *
+ *  \code
+c++ -o example example.cxx `pkg-config texcaller --cflags --libs`
+ *  \endcode
+ *
+ *  @{
+ */
+
+class Error: public std::runtime_error
+{
+public:
+    Error(const std::string &arg): std::runtime_error(arg) {}
+    virtual const char* what() const throw() { return std::runtime_error::what(); }
+};
+
+/*! Convert a TeX or LaTeX source to DVI or PDF.
+ *
+ *  This is a simple wrapper around \ref texcaller_convert.
+ *
+ *  \param result
+ *      will contain the generated document.
+ *
+ *  \param info
+ *      will contain additional information such as TeX warnings.
+ *
+ *  \param source
+ *      the source to convert
+ *
+ *  \param source_format
+ *      must be one of:
+ *      - \c "TeX"
+ *      - \c "LaTeX"
+ *
+ *  \param result_format
+ *      must be one of:
+ *      - \c "DVI"
+ *      - \c "PDF"
+ *
+ *  \param max_runs
+ *      maximum number of TeX runs,
+ *      must be ≥ 2.
+ *
+ *  \exception Error
+ *      the TeX interpreter exited with an error,
+ *      the output hasn't stabilized after \c max_runs runs,
+ *      or out of memory.
+ */
+inline void convert(std::string &result, std::string &info, const std::string &source, const std::string &source_format, const std::string &result_format, int max_runs) throw(Error)
+{
+    char *c_result;
+    size_t c_result_size;
+    char *c_info;
+    ::texcaller_convert(&c_result, &c_result_size, &c_info,
+                        source.data(), source.size(), source_format.c_str(), result_format.c_str(), max_runs);
+    if (c_info == NULL) {
+        throw Error("Out of memory.");
+    }
+    if (c_result == NULL) {
+        const std::string error_info(c_info);
+        free(c_info);
+        throw Error(error_info);
+    }
+    info.assign(c_info);
+    free(c_info);
+    result.assign(c_result, c_result_size);
+    free(c_result);
+}
+
+/*! Escape a string for direct use in LaTeX.
+ *
+ *  This is a simple wrapper around \ref texcaller_escape_latex.
+ *
+ *  \param s
+ *      the string to escape
+ *
+ *  \return
+ *      the escaped value
+ *
+ *  \exception Error
+ *      out of memory
+ */
+inline std::string escape_latex(const std::string &s) throw(Error)
+{
+    char *c_result = ::texcaller_escape_latex(s.c_str());
+    if (c_result == NULL) {
+        throw Error("Out of memory.");
+    }
+    const std::string result(c_result);
+    free(c_result);
+    return result;
+}
+
+/*! @} */
+
+}
+
 #endif
 
 #endif

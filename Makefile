@@ -7,6 +7,7 @@ UPLOAD_DEST := www.profv.de:texcaller/
 CROSS :=
 AR := $(CROSS)ar
 CC := $(CROSS)gcc
+CXX := $(CROSS)g++
 INSTALL := $(shell ginstall --help >/dev/null 2>&1 && echo g)install
 CFLAGS := -O3 -ansi -pedantic -W -Wall -Werror
 
@@ -51,6 +52,8 @@ install-doc: .build/doc.ok
 check-c: .build/c.ok
 	$(CC) $(CFLAGS) -Isrc -L.build/c -o .build/c/example src/example.c -ltexcaller
 	.build/c/example
+	$(CXX) $(CFLAGS) -Isrc -L.build/c -o .build/c/example_cxx src/example.cxx -ltexcaller
+	.build/c/example_cxx
 
 install-c: .build/c.ok
 	( echo 'Name: texcaller'; \
