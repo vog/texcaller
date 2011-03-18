@@ -1,6 +1,6 @@
 VERSION := $(shell git describe --always)
 
-PARTS := doc c shell postgresql
+PARTS := doc c shell postgresql python
 PREFIX := /usr/local
 UPLOAD_DEST := www.profv.de:texcaller/
 
@@ -113,6 +113,32 @@ check-postgresql: .build/postgresql.ok
 
 install-postgresql: .build/postgresql.ok
 	$(MAKE) -C .build/postgresql install
+
+# python
+.build/python.ok: src/texcaller.i src/texcaller.h src/texcaller.c
+	rm -fr   .build/python
+	mkdir -p .build/python
+	cd .build/python && swig -python -c++ -outcurrentdir ../../src/texcaller.i
+	( echo 'from setuptools import setup, Extension'; \
+	  echo ''; \
+	  echo "_texcaller = Extension('_texcaller',"; \
+	  echo "                       include_dirs = ['../../src'],"; \
+	  echo "                       sources = ['texcaller_wrap.cxx', '../../src/texcaller.c'])"; \
+	  echo ""; \
+	  echo "setup(name = 'texcaller',"; \
+	  echo "      version = '$(VERSION)',"; \
+	  echo "      ext_modules = [_texcaller],"; \
+	  echo "      py_modules = ['texcaller'])"; \
+	) > .build/python/setup.py
+	cd .build/python && python setup.py build_ext --inplace
+	touch $@
+
+check-python: .build/python.ok
+	cp src/example.py .build/python/
+	cd .build/python && python example.py
+
+install-python: .build/python.ok
+	cd .build/python && python setup.py install
 
 # others
 clean:

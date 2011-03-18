@@ -30,6 +30,10 @@
  *  \skip select
  *  \until ;
  *
+ *  - \ref python
+ *  \dontinclude example.py
+ *  \skipline texcaller.convert
+ *
  *  \page download Download
  *
  *  \section development Development version
@@ -45,6 +49,7 @@ git clone https://github.com/vog/texcaller.git
  *  <a href="http://www.profv.de/texcaller/texcaller-0.4.tar.gz">Download</a> |
  *  <a href="https://github.com/vog/texcaller/commits/0.4">ChangeLog</a>
  *
+ *  This release adds a Python interface.
  *  The C++ interface now uses standard exceptions.
  *
  *  \section release-0_3 Release 0.3
