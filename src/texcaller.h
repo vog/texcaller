@@ -44,6 +44,13 @@
 git clone https://github.com/vog/texcaller.git
 \endverbatim
  *
+ *  \section release-0_4 Release 0.4
+ *
+ *  <a href="http://www.profv.de/texcaller/texcaller-0.4.tar.gz">Download</a> |
+ *  <a href="https://github.com/vog/texcaller/commits/0.4">ChangeLog</a>
+ *
+ *  The C++ interface now uses standard exceptions.
+ *
  *  \section release-0_3 Release 0.3
  *
  *  <a href="http://www.profv.de/texcaller/texcaller-0.3.tar.gz">Download</a> |
@@ -273,13 +280,6 @@ c++ -o example example.cxx `pkg-config texcaller --cflags --libs`
  *  @{
  */
 
-class Error: public std::runtime_error
-{
-public:
-    Error(const std::string &arg): std::runtime_error(arg) {}
-    virtual const char* what() const throw() { return std::runtime_error::what(); }
-};
-
 /*! Convert a TeX or LaTeX source to DVI or PDF.
  *
  *  This is a simple wrapper around \ref texcaller_convert.
@@ -307,12 +307,13 @@ public:
  *      maximum number of TeX runs,
  *      must be ≥ 2.
  *
- *  \exception Error
+ *  \exception std::domain_error
+ *      the TeX source was invalid.
+ *      That is,
  *      the TeX interpreter exited with an error,
- *      the output hasn't stabilized after \c max_runs runs,
- *      or out of memory.
+ *      or the output hasn't stabilized after \c max_runs runs.
  */
-inline void convert(std::string &result, std::string &info, const std::string &source, const std::string &source_format, const std::string &result_format, int max_runs) throw(Error)
+inline void convert(std::string &result, std::string &info, const std::string &source, const std::string &source_format, const std::string &result_format, int max_runs) throw(std::domain_error, std::runtime_error)
 {
     char *c_result;
     size_t c_result_size;
@@ -320,12 +321,12 @@ inline void convert(std::string &result, std::string &info, const std::string &s
     ::texcaller_convert(&c_result, &c_result_size, &c_info,
                         source.data(), source.size(), source_format.c_str(), result_format.c_str(), max_runs);
     if (c_info == NULL) {
-        throw Error("Out of memory.");
+        throw std::runtime_error("Out of memory.");
     }
     if (c_result == NULL) {
         const std::string error_info(c_info);
         free(c_info);
-        throw Error(error_info);
+        throw std::domain_error(error_info);
     }
     info.assign(c_info);
     free(c_info);
@@ -342,15 +343,12 @@ inline void convert(std::string &result, std::string &info, const std::string &s
  *
  *  \return
  *      the escaped value
- *
- *  \exception Error
- *      out of memory
  */
-inline std::string escape_latex(const std::string &s) throw(Error)
+inline std::string escape_latex(const std::string &s) throw(std::runtime_error)
 {
     char *c_result = ::texcaller_escape_latex(s.c_str());
     if (c_result == NULL) {
-        throw Error("Out of memory.");
+        throw std::runtime_error("Out of memory.");
     }
     const std::string result(c_result);
     free(c_result);

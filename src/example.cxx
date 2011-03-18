@@ -21,7 +21,7 @@ int main()
 
         std::cout << "Generated PDF of " << pdf.size() << " bytes.";
         std::cout << " Details:" << std::endl << std::endl << info;
-    } catch (texcaller::Error &e) {
+    } catch (std::domain_error &e) {
         std::cout << "Error: " << e.what() << std::endl;
     }
 
