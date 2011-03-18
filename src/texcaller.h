@@ -17,16 +17,12 @@
  *
  *  - \ref c
  *  \dontinclude example.c
- *  \skipline texcaller
- *  ...
- *  \skip texcaller
+ *  \skip texcaller_convert
  *  \until ;
  *
  *  - \ref cxx
  *  \dontinclude example.cxx
- *  \skipline texcaller
- *  ...
- *  \skip texcaller
+ *  \skip texcaller::convert
  *  \until ;
  *
  *  - \ref postgresql
