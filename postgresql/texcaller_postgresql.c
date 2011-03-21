@@ -1,4 +1,4 @@
-/* See texcaller.h for copyright information and documentation. */
+/* See doc/index.html for copyright information and documentation. */
 
 /*! \defgroup postgresql Texcaller PostgreSQL interface
  *
