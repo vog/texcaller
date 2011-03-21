@@ -1,4 +1,4 @@
-VERSION := $(shell git describe --always)
+VERSION = $(shell git describe --always)
 UPLOAD_DEST := www.profv.de:texcaller/
 
 .PHONY: default indep all check clean dist
@@ -34,19 +34,21 @@ clean:
 	$(MAKE) -C shell clean
 	$(MAKE) -C postgresql clean
 	cd python && rm -fr build dist texcaller.egg-info _texcaller.so texcaller.pyc
+	rm -fr release
 
-dist: all
-	@echo 'not yet implemented'
-	@exit 1
-	rm -fr .build/release
-	$(INSTALL) -d .build/release/texcaller-$(VERSION)/src
-	( echo 'VERSION := $(VERSION)'; \
-	  tail -n +2 Makefile; \
-	) > .build/release/Makefile
-	$(INSTALL) -m644 .build/release/Makefile .build/release/texcaller-$(VERSION)/
-	$(INSTALL) -m644 src/* .build/release/texcaller-$(VERSION)/src/
-	cd .build/release && tar -cf - texcaller-$(VERSION)/ | gzip -9 > texcaller-$(VERSION).tar.gz
+dist:
+	rm -fr release
+	mkdir -p release/texcaller-$(VERSION)
+	git checkout-index -a --prefix=release/texcaller-$(VERSION)/
+	$(MAKE) -C release/texcaller-$(VERSION) indep
+	cd release && tar -cf - texcaller-$(VERSION)/ | gzip -9 > texcaller-$(VERSION).tar.gz
+	@echo
+	@echo '---------------------------------------------------------------'
+	@echo 'Upload will start in 5 seconds. Last chance to cancel! (Ctrl+C)'
+	@echo '---------------------------------------------------------------'
+	@echo
+	@sleep 5
 	rsync -rtvz --delete -f 'protect *.tar*' --chmod=u=rwX,go= \
-	    .build/release/texcaller-$(VERSION).tar.gz \
-	    .build/doc/ \
+	    release/texcaller-$(VERSION).tar.gz \
+	    release/texcaller-$(VERSION)/doc/ \
 	    $(UPLOAD_DEST)
