@@ -52,3 +52,4 @@ dist:
 	    release/texcaller-$(VERSION).tar.gz \
 	    release/texcaller-$(VERSION)/doc/ \
 	    $(UPLOAD_DEST)
+
