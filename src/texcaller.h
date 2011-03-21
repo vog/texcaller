@@ -276,7 +276,7 @@ namespace texcaller
  *  \include example.cxx
  *
  *  Since the C++ wrappers are defined completely inline,
- *  there is no need for an extra library.
+ *  there is no need for an extra C++ library.
  *  The compiler and linker options of the \ref c
  *  also work perfectly for C++:
  *
