@@ -26,6 +26,7 @@ texcaller.escape_latex(s)
  *  \include example.py
  */
 
+/*! \cond */
 #ifdef SWIGPYTHON
 
 %pythonprepend convert %{
@@ -46,6 +47,7 @@ texcaller.escape_latex(s)
 %}
 
 #endif
+/*! \endcond */
 
 /*
  *  Declarations for all languages
