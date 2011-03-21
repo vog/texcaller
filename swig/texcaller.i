@@ -26,6 +26,8 @@ texcaller.escape_latex(s)
  *  \include example.py
  */
 
+#ifdef SWIGPYTHON
+
 %pythonprepend convert %{
     (source, source_format, result_format, max_runs) = args
     args = (source.encode('UTF-8'), source_format.encode('UTF-8'), result_format.encode('UTF-8'), max_runs)
@@ -42,6 +44,8 @@ texcaller.escape_latex(s)
 %pythonappend escape_latex %{
     val = val.decode('UTF-8')
 %}
+
+#endif
 
 /*
  *  Declarations for all languages
