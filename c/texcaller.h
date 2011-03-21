@@ -219,7 +219,7 @@ cc -o example example.c -ltexcaller
  *  \param max_runs
  *      maximum number of TeX runs,
  *      must be ≥ 2.
- *      If the output hasn't stabilized after \c max_runs runs,
+ *      If the output doesn't stabilize after \c max_runs runs,
  *      the function will fail and \c result will be set to \c NULL.
  */
 void texcaller_convert(char **result, size_t *result_size, char **info, const char *source, size_t source_size, const char *source_format, const char *result_format, int max_runs);
@@ -326,7 +326,7 @@ c++ -o example example.cxx `pkg-config texcaller --cflags --libs`
  *      the TeX source was invalid.
  *      That is,
  *      the TeX interpreter exited with an error,
- *      or the output hasn't stabilized after \c max_runs runs.
+ *      or the output didn't stabilize after \c max_runs runs.
  */
 inline void convert(std::string &result, std::string &info, const std::string &source, const std::string &source_format, const std::string &result_format, int max_runs) throw(std::domain_error, std::runtime_error)
 {
