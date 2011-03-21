@@ -44,6 +44,14 @@
 git clone https://github.com/vog/texcaller.git
 \endverbatim
  *
+ *  \section release-0_5 Release 0.5
+ *
+ *  <a href="http://www.profv.de/texcaller/texcaller-0.5.tar.gz">Download</a> |
+ *  <a href="https://github.com/vog/texcaller/commits/0.5">ChangeLog</a>
+ *
+ *  It is now easier to build only the wanted parts.
+ *  Normal users don't have to run SWIG and Doxygen anymore.
+ *
  *  \section release-0_4 Release 0.4
  *
  *  <a href="http://www.profv.de/texcaller/texcaller-0.4.tar.gz">Download</a> |
