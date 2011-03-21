@@ -1,6 +1,6 @@
 /*! \mainpage Texcaller
  *
- *  \subpage download | \subpage license | \subpage similar
+ *  \subpage download | \subpage license | \subpage links
  *
  *  Texcaller is a convenient interface to the
  *  <a href="http://www.tug.org/">TeX</a>
@@ -100,7 +100,13 @@ git clone https://github.com/vog/texcaller.git
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  *  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  \page similar Similar projects
+ *  \page links Links
+ *
+ *  \section website Project website
+ *
+ *  - <a href="http://www.profv.de/texcaller/">http://www.profv.de/texcaller/</a>
+ *
+ *  \section similar Similar projects
  *
  *  Texcaller doesn't suit your needs?
  *  Perhaps one of the following projects does.
