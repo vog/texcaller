@@ -4,12 +4,12 @@ UPLOAD_DEST := www.profv.de:texcaller/
 .PHONY: default indep all check clean dist
 
 default: indep
-	@echo ''
+	@echo
 	@echo '-----------------------------------------------------------------'
 	@echo 'Please change to the directory of the part you are interested in,'
 	@echo 'or alternatively run "make all" to build all at once.'
 	@echo '-----------------------------------------------------------------'
-	@echo ''
+	@echo
 
 indep:
 	$(MAKE) -C doc-mk
