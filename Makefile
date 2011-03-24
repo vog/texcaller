@@ -57,4 +57,7 @@ dist:
 	    release/texcaller-$(VERSION).tar.gz \
 	    release/texcaller-$(VERSION)/doc/ \
 	    $(UPLOAD_DEST)
+	x-www-browser \
+	    'http://www.profv.de/texcaller/download.html' \
+	    'http://freshmeat.net/projects/texcaller/releases/new'
 
