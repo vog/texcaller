@@ -20,12 +20,15 @@ all: indep
 	$(MAKE) -C shell
 	$(MAKE) -C postgresql
 	cd python && python setup.py build_ext --inplace
+	cd ruby && ruby extconf.rb
+	$(MAKE) -C ruby
 
 check: all
 	$(MAKE) -C c check
 	$(MAKE) -C shell check
 	$(MAKE) -C postgresql check
 	cd python && python example.py
+	cd ruby && ruby example.rb
 
 clean:
 	$(MAKE) -C doc-mk clean
@@ -34,6 +37,8 @@ clean:
 	$(MAKE) -C shell clean
 	$(MAKE) -C postgresql clean
 	cd python && rm -fr build dist texcaller.egg-info _texcaller.so texcaller.pyc
+	[ ! -e ruby/Makefile ] || $(MAKE) -C ruby clean
+	cd ruby && rm -fr Makefile texcaller.c
 	rm -fr release
 
 dist:

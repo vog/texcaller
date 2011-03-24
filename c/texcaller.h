@@ -34,6 +34,10 @@
  *  \dontinclude example.py
  *  \skipline texcaller.convert
  *
+ *  - \ref ruby
+ *  \dontinclude example.rb
+ *  \skipline Texcaller.convert
+ *
  *  \page download Download
  *
  *  \section development Development version
@@ -49,8 +53,9 @@ git clone https://github.com/vog/texcaller.git
  *  <a href="http://www.profv.de/texcaller/texcaller-0.5.tar.gz">Download</a> |
  *  <a href="https://github.com/vog/texcaller/commits/0.5">ChangeLog</a>
  *
- *  It is now easier to build only the wanted parts.
+ *  This release makes it easy to build only the wanted parts.
  *  Normal users don't have to run SWIG and Doxygen anymore.
+ *  An interface for Ruby is provided.
  *
  *  \section release-0_4 Release 0.4
  *

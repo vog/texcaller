@@ -49,6 +49,37 @@ texcaller.escape_latex(s)
 #endif
 /*! \endcond */
 
+/*! \defgroup ruby Texcaller Ruby interface
+ *
+ *  \par Synopsis
+ *
+ *  \code
+require 'texcaller'
+Texcaller.convert(source, source_format, result_format, max_runs)  # returns a pair [result, info]
+Texcaller.escape_latex(s)
+ *  \endcode
+ *
+ *  \par Description
+ *
+ *  These
+ *  <a href="http://www.ruby-lang.org/">Ruby</a>
+ *  functions are simple wrappers
+ *  around the \ref c library functions,
+ *  making
+ *  <a href="http://www.tug.org/">TeX</a>
+ *  typesetting
+ *  easily accessible from Ruby.
+ *
+ *  \par Example
+ *
+ *  \include example.rb
+ */
+
+/*! \cond */
+#ifdef SWIGRUBY
+#endif
+/*! \endcond */
+
 /*
  *  Declarations for all languages
  */

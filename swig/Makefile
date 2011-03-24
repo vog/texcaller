@@ -1,4 +1,4 @@
-LANGUAGES := python
+LANGUAGES := python ruby
 
 WRAP_FILES := $(patsubst %,../%/texcaller_wrap.cxx,$(LANGUAGES))
 
