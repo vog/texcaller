@@ -23,6 +23,10 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*! Escape a single character for LaTeX.
  *
  *  \param c
@@ -84,7 +88,7 @@ static char *sprintf_alloc(const char *format, ...)
         return NULL;
     }
     /* allocate memory for result */
-    result = malloc(len + 1);
+    result = (char *)malloc(len + 1);
     if (result == NULL) {
         return NULL;
     }
@@ -219,7 +223,7 @@ static void read_file(char **result, size_t *result_size, char **error, const ch
                                path, strerror(errno));
         goto error_cleanup;
     }
-    *result = malloc(*result_size + 1);
+    *result = (char *)malloc(*result_size + 1);
     if (*result == NULL) {
         *error = sprintf_alloc("Unable to allocate buffer for reading file \"%s\": %s.",
                                path, strerror(errno));
@@ -318,8 +322,8 @@ error_cleanup:
 void texcaller_convert(char **result, size_t *result_size, char **info, const char *source, size_t source_size, const char *source_format, const char *result_format, int max_runs)
 {
     char *error;
-    char *cmd;
-    char *tmpdir;
+    const char *cmd;
+    const char *tmpdir;
     char *dir = NULL;
     char *dir_template = NULL;
     char *source_filename = NULL;
@@ -524,7 +528,7 @@ char *texcaller_escape_latex(const char *s)
         }
     }
     /* allocate memory for result */
-    escaped_string = malloc(length + 1);
+    escaped_string = (char *)malloc(length + 1);
     if (escaped_string == NULL) {
         return NULL;
     }
@@ -545,3 +549,7 @@ char *texcaller_escape_latex(const char *s)
 }
 
 /*!  @} */
+
+#ifdef __cplusplus
+}
+#endif
