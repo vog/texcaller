@@ -85,7 +85,7 @@ Texcaller.escape_latex(s)
  */
 
 %{
-#include "texcaller.h"
+#include "../c/texcaller.h"
 %}
 
 %include "typemaps.i"
@@ -99,3 +99,7 @@ void convert(std::string &OUTPUT, std::string &OUTPUT, const std::string &source
 std::string escape_latex(const std::string &s) throw(std::runtime_error);
 
 }
+
+%{
+#include "../c/texcaller.c"
+%}

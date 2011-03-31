@@ -35,7 +35,7 @@
 #include <executor/executor.h>
 #include <utils/builtins.h>
 
-#include <texcaller.h>
+#include "../c/texcaller.h"
 
 PG_MODULE_MAGIC;
 
@@ -109,3 +109,5 @@ Datum postgresql_texcaller_escape_latex(PG_FUNCTION_ARGS)
     free(native_result);
     PG_RETURN_TEXT_P(result);
 }
+
+#include "../c/texcaller.c"

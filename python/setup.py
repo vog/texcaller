@@ -1,8 +1,7 @@
 from setuptools import setup, Extension
 
 _texcaller = Extension('_texcaller',
-                       include_dirs = ['../c'],
-                       sources = ['texcaller_wrap.cxx', '../c/texcaller.c'])
+                       sources = ['texcaller_wrap.cxx'])
 
 setup(name = 'texcaller',
       version = '0',

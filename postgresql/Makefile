@@ -1,8 +1,6 @@
-MODULE_big = texcaller
+MODULE_big := texcaller
 OBJS := texcaller_postgresql.o
 DATA := texcaller.sql
-PG_CPPFLAGS := -I../c
-SHLIB_LINK := ../c/texcaller.c
 PG_CONFIG := pg_config
 PGXS := $(shell $(PG_CONFIG) --pgxs)
 include $(PGXS)
