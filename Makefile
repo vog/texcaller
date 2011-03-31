@@ -22,6 +22,8 @@ all: indep
 	cd python && python setup.py build_ext --inplace
 	cd ruby && ruby extconf.rb
 	$(MAKE) -C ruby
+	[ -e php/Makefile ] || { cd php && phpize && ./configure ; }
+	$(MAKE) -C php
 
 check: all
 	$(MAKE) -C c check
@@ -29,6 +31,7 @@ check: all
 	$(MAKE) -C postgresql check
 	cd python && python example.py
 	cd ruby && ruby example.rb
+	$(MAKE) -C php test PHP_TEST_SHARED_EXTENSIONS='-n -d extension=texcaller.so'
 
 clean:
 	$(MAKE) -C doc-mk clean
@@ -39,6 +42,7 @@ clean:
 	cd python && rm -fr build dist texcaller.egg-info _texcaller.so texcaller.pyc
 	[ ! -e ruby/Makefile ] || $(MAKE) -C ruby clean
 	cd ruby && rm -fr Makefile texcaller.c
+	cd php && phpize --clean
 	rm -fr release
 
 dist:

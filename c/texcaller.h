@@ -38,6 +38,10 @@
  *  \dontinclude example.rb
  *  \skipline Texcaller.convert
  *
+ *  - \ref php
+ *  \dontinclude example.php
+ *  \skipline texcaller_convert
+ *
  *  \page download Download
  *
  *  \section development Development version
@@ -47,6 +51,14 @@
  *  \verbatim
 git clone https://github.com/vog/texcaller.git
 \endverbatim
+ *
+ *  \section release-0_6 Release 0.6
+ *
+ *  <a href="http://www.profv.de/texcaller/texcaller-0.6.tar.gz">Download</a> |
+ *  <a href="https://github.com/vog/texcaller/commits/0.6">ChangeLog</a>
+ *
+ *  This release provides a PHP interface.
+ *  The internal build system has been improved.
  *
  *  \section release-0_5 Release 0.5
  *

@@ -80,6 +80,40 @@ Texcaller.escape_latex(s)
 #endif
 /*! \endcond */
 
+/*! \defgroup php Texcaller PHP interface
+ *
+ *  \par Synopsis
+ *
+ *  \code
+texcaller_convert(&$result, &$info, $source, $source_format, $result_format, $max_runs)
+texcaller_escape_latex($s)
+ *  \endcode
+ *
+ *  \par Description
+ *
+ *  These
+ *  <a href="http://www.php.net/">PHP</a>
+ *  functions are simple wrappers
+ *  around the \ref c library functions,
+ *  making
+ *  <a href="http://www.tug.org/">TeX</a>
+ *  typesetting
+ *  easily accessible from PHP.
+ *
+ *  \par Example
+ *
+ *  \include example.php
+ */
+
+/*! \cond */
+#ifdef SWIGPHP
+
+%rename(texcaller_convert) texcaller::convert;
+%rename(texcaller_escape_latex) texcaller::escape_latex;
+
+#endif
+/*! \endcond */
+
 /*
  *  Declarations for all languages
  */
