@@ -52,6 +52,13 @@
 git clone https://github.com/vog/texcaller.git
 \endverbatim
  *
+ *  \section release-0_7 Release 0.7
+ *
+ *  <a href="http://www.profv.de/texcaller/texcaller-0.7.tar.gz">Download</a> |
+ *  <a href="https://github.com/vog/texcaller/commits/0.7">ChangeLog</a>
+ *
+ *  This release provides an improved documentation.
+ *
  *  \section release-0_6 Release 0.6
  *
  *  <a href="http://www.profv.de/texcaller/texcaller-0.6.tar.gz">Download</a> |

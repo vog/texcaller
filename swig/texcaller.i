@@ -24,6 +24,25 @@ texcaller.escape_latex(s)
  *  \par Example
  *
  *  \include example.py
+ *
+ *  \par Beware of \c \\u
+ *
+ *  Unfortunately,
+ *  Python always interprets \c \\uXXXX sequences in unicode strings
+ *  (even in raw unicode strings),
+ *  which interferes badly with common LaTeX commands such as \c \\usepackage{}.
+ *  This means every backslash \c \\ which is followed by the character \c u
+ *  needs to be escaped via \c \\u005c,
+ *  which looks really strange:
+ *
+ *  \include example_ur_1.py
+ *
+ *  Fortunately,
+ *  this problem is easily solved by
+ *  using raw byte strings, and
+ *  converting those to unicode strings via the \c decode() method:
+ *
+ *  \include example_ur_2.py
  */
 
 /*! \cond */
