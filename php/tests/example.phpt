@@ -4,7 +4,7 @@ run example.php
 <?php
 require 'example.php';
 --EXPECT--
-PDF size:     5.5 KB
+PDF size:     12.2 KB
 PDF content:  %PDF- ... %%EOF
 
 Original:  Téxt → "with" $peciäl <characters>
