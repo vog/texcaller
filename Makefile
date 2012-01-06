@@ -31,7 +31,7 @@ check: all
 	$(MAKE) -C postgresql check
 	cd python && python example.py
 	cd ruby && ruby example.rb
-	$(MAKE) -C php test PHP_TEST_SHARED_EXTENSIONS='-n -d extension=texcaller.so'
+	$(MAKE) -C php test NO_INTERACTION=1 PHP_TEST_SHARED_EXTENSIONS='-n -d extension=texcaller.so'
 
 clean:
 	$(MAKE) -C doc-mk clean
