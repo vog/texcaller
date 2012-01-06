@@ -20,7 +20,7 @@ int main()
     if (pdf == NULL) {
         printf("Error: %s\n", info == NULL ? "Out of memory." : info);
     } else {
-        printf("Generated PDF of %i bytes. Details:\n\n%s", pdf_size, info);
+        printf("Generated PDF of %i bytes. Details:\n\n%s", (int)pdf_size, info);
     }
 
     free(pdf);
