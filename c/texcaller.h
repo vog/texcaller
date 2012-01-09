@@ -58,6 +58,8 @@ git clone https://github.com/vog/texcaller.git
  *  <a href="https://github.com/vog/texcaller/commits/0.7">ChangeLog</a>
  *
  *  This release provides an improved documentation.
+ *  The PostgreSQL interface has been packed into a
+ *  <a href="http://www.postgresql.org/docs/9.1/static/sql-createextension.html">PostgreSQL extension</a>.
  *
  *  \section release-0_6 Release 0.6
  *
