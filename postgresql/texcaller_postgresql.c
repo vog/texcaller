@@ -73,7 +73,7 @@ Datum postgresql_texcaller_convert(PG_FUNCTION_ARGS)
         PG_RETURN_NULL();
     }
     ereport(NOTICE,
-            (errmsg_internal(info)));
+            (errmsg_internal("%s", info)));
     free(info);
     /* return result */
     if (native_result == NULL) {

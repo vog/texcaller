@@ -52,6 +52,13 @@
 git clone https://github.com/vog/texcaller.git
 \endverbatim
  *
+ *  \section release-0_8 Release 0.8
+ *
+ *  <a href="http://www.profv.de/texcaller/texcaller-0.8.tar.gz">Download</a> |
+ *  <a href="https://github.com/vog/texcaller/commits/0.8">ChangeLog</a>
+ *
+ *  This release provides a small bugfix for the PostgreSQL extension.
+ *
  *  \section release-0_7 Release 0.7
  *
  *  <a href="http://www.profv.de/texcaller/texcaller-0.7.tar.gz">Download</a> |
