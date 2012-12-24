@@ -421,8 +421,8 @@ void texcaller_convert(char **result, size_t *result_size, char **info, const ch
                    cmd,
                    "-interaction=batchmode",
                    "-halt-on-error",
-                   "-no-shell-escape",
                    "-file-line-error",
+                   "-no-shell-escape",
                    "texput.tex",
                    NULL);
         }
