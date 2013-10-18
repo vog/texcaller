@@ -54,14 +54,14 @@ git clone https://github.com/vog/texcaller.git
  *
  *  \section release-0_8 Release 0.8
  *
- *  <a href="http://www.profv.de/texcaller/texcaller-0.8.tar.gz">Download</a> |
+ *  <a href="http://vog.github.io/texcaller/texcaller-0.8.tar.gz">Download</a> |
  *  <a href="https://github.com/vog/texcaller/commits/0.8">ChangeLog</a>
  *
  *  This release provides a small bugfix for the PostgreSQL extension.
  *
  *  \section release-0_7 Release 0.7
  *
- *  <a href="http://www.profv.de/texcaller/texcaller-0.7.tar.gz">Download</a> |
+ *  <a href="http://vog.github.io/texcaller/texcaller-0.7.tar.gz">Download</a> |
  *  <a href="https://github.com/vog/texcaller/commits/0.7">ChangeLog</a>
  *
  *  This release provides an improved documentation.
@@ -70,7 +70,7 @@ git clone https://github.com/vog/texcaller.git
  *
  *  \section release-0_6 Release 0.6
  *
- *  <a href="http://www.profv.de/texcaller/texcaller-0.6.tar.gz">Download</a> |
+ *  <a href="http://vog.github.io/texcaller/texcaller-0.6.tar.gz">Download</a> |
  *  <a href="https://github.com/vog/texcaller/commits/0.6">ChangeLog</a>
  *
  *  This release provides a PHP interface.
@@ -78,7 +78,7 @@ git clone https://github.com/vog/texcaller.git
  *
  *  \section release-0_5 Release 0.5
  *
- *  <a href="http://www.profv.de/texcaller/texcaller-0.5.tar.gz">Download</a> |
+ *  <a href="http://vog.github.io/texcaller/texcaller-0.5.tar.gz">Download</a> |
  *  <a href="https://github.com/vog/texcaller/commits/0.5">ChangeLog</a>
  *
  *  This release makes it easy to build only the wanted parts.
@@ -87,7 +87,7 @@ git clone https://github.com/vog/texcaller.git
  *
  *  \section release-0_4 Release 0.4
  *
- *  <a href="http://www.profv.de/texcaller/texcaller-0.4.tar.gz">Download</a> |
+ *  <a href="http://vog.github.io/texcaller/texcaller-0.4.tar.gz">Download</a> |
  *  <a href="https://github.com/vog/texcaller/commits/0.4">ChangeLog</a>
  *
  *  This release adds a Python interface.
@@ -95,14 +95,14 @@ git clone https://github.com/vog/texcaller.git
  *
  *  \section release-0_3 Release 0.3
  *
- *  <a href="http://www.profv.de/texcaller/texcaller-0.3.tar.gz">Download</a> |
+ *  <a href="http://vog.github.io/texcaller/texcaller-0.3.tar.gz">Download</a> |
  *  <a href="https://github.com/vog/texcaller/commits/0.3">ChangeLog</a>
  *
  *  This release provides a C++ interface.
  *
  *  \section release-0_2 Release 0.2
  *
- *  <a href="http://www.profv.de/texcaller/texcaller-0.2.tar.gz">Download</a> |
+ *  <a href="http://vog.github.io/texcaller/texcaller-0.2.tar.gz">Download</a> |
  *  <a href="https://github.com/vog/texcaller/commits/0.2">ChangeLog</a>
  *
  *  This release provides an interface to PostgreSQL
@@ -110,7 +110,7 @@ git clone https://github.com/vog/texcaller.git
  *
  *  \section release-0_1 Release 0.1
  *
- *  <a href="http://www.profv.de/texcaller/texcaller-0.1.tar.gz">Download</a> |
+ *  <a href="http://vog.github.io/texcaller/texcaller-0.1.tar.gz">Download</a> |
  *  <a href="https://github.com/vog/texcaller/commits/0.1">ChangeLog</a>
  *
  *  This is the first release.
@@ -145,7 +145,7 @@ git clone https://github.com/vog/texcaller.git
  *
  *  \section website Project website
  *
- *  - <a href="http://www.profv.de/texcaller/">http://www.profv.de/texcaller/</a>
+ *  - <a href="http://vog.github.io/texcaller/">http://vog.github.io/texcaller/</a>
  *
  *  \section similar Similar projects
  *

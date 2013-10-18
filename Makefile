@@ -1,5 +1,5 @@
 VERSION = $(shell git describe --always)
-UPLOAD_DEST := www.profv.de:texcaller/
+UPLOAD_DEST := ../texcaller-website/
 
 .PHONY: default indep all check clean dist
 
@@ -57,11 +57,11 @@ dist:
 	@echo '---------------------------------------------------------------'
 	@echo
 	@sleep 5
-	rsync -rtvz --delete -f 'protect *.tar*' --chmod=u=rwX,go= \
+	rsync -rtvz --delete -f 'protect *.tar*' -f 'protect .git' --chmod=u=rwX,go= \
 	    release/texcaller-$(VERSION).tar.gz \
 	    release/texcaller-$(VERSION)/doc/ \
 	    $(UPLOAD_DEST)
 	x-www-browser \
-	    'http://www.profv.de/texcaller/download.html' \
+	    'http://vog.github.io/texcaller/download.html' \
 	    'http://freshmeat.net/projects/texcaller/releases/new'
 
