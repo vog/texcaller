@@ -153,7 +153,6 @@ git clone https://github.com/vog/texcaller.git
  *  Perhaps one of the following projects does.
  *
  *  - <a href="http://pypi.python.org/pypi/tex">python-tex</a> (predecessor of Texcaller)
- *  - <a href="http://www.profv.de/texpipeline/">Texpipeline</a> (predecessor of python-tex)
  *  - <a href="http://tug.ctan.org/pkg/autolatex">AutoLaTeX</a> (CTAN)
  *  - <a href="http://tug.ctan.org/pkg/latexmk">latexmk</a> (CTAN)
  *  - <a href="http://tug.ctan.org/pkg/mk">mk</a> (CTAN)
