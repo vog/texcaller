@@ -1,4 +1,3 @@
-require 'ftools'
 require 'mkmf'
 if !have_library('stdc++')
     puts 'Missing C++ runtime'
