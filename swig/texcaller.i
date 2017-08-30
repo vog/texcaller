@@ -59,8 +59,7 @@ texcaller.escape_latex(s)
 %}
 
 %pythonprepend escape_latex %{
-    (s,) = args
-    args = (s.encode('UTF-8'),)
+    s = s.encode('UTF-8')
 %}
 %pythonappend escape_latex %{
     val = val.decode('UTF-8')
