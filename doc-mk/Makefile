@@ -11,6 +11,7 @@ all: ../doc/index.html
 	  echo 'INPUT = $^'; \
 	  echo 'OUTPUT_DIRECTORY = ../doc'; \
 	) | doxygen -
+	rm -f ../doc/dir_*
 
 clean:
 	rm -fr ../doc
