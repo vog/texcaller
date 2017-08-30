@@ -49,7 +49,9 @@ texcaller.escape_latex(s)
 #ifdef SWIGPYTHON
 
 %pythonprepend convert %{
-    source, source_format, result_format = source.encode('UTF-8'), source_format.encode('UTF-8'), result_format.encode('UTF-8')
+    source = source.encode('UTF-8')
+    source_format = source_format.encode('UTF-8')
+    result_format = result_format.encode('UTF-8')
 %}
 %pythonappend convert %{
     (result, info) = val
