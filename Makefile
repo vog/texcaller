@@ -58,3 +58,4 @@ dist:
 	@echo
 	@echo 'Please verify and upload $(RELEASE_DIR)'
 	@echo
+	rm -fr release
