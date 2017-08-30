@@ -5,7 +5,7 @@ AR := $(CROSS)ar
 CC := $(CROSS)gcc
 CXX := $(CROSS)g++
 INSTALL := $(shell ginstall --help >/dev/null 2>&1 && echo g)install
-CFLAGS := -O3 -D_DEFAULT_SOURCE -ansi -pedantic -W -Wall -Werror
+CFLAGS := -O3 -D_GNU_SOURCE -ansi -pedantic -W -Wall -Werror
 
 .PHONY: all check clean install
 
