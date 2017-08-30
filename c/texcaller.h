@@ -52,6 +52,15 @@
 git clone https://github.com/vog/texcaller.git
 \endverbatim
  *
+ *  \section release-1_0 Release 1.0
+ *
+ *  <a href="http://vog.github.io/texcaller/texcaller-1.0.tar.gz">Download</a> |
+ *  <a href="https://github.com/vog/texcaller/commits/1.0">ChangeLog</a>
+ *
+ *  This release adds support for Python 3.
+ *  Some compiler warnings have been fixed.
+ *  The code has been adjusted to newer SWIG versions.
+ *
  *  \section release-0_8 Release 0.8
  *
  *  <a href="http://vog.github.io/texcaller/texcaller-0.8.tar.gz">Download</a> |
