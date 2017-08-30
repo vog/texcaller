@@ -1,5 +1,5 @@
 VERSION = $(shell git describe --always)
-UPLOAD_DEST := ../texcaller-website/
+RELEASE_DIR := ../texcaller-website/
 
 .PHONY: default indep all check clean dist
 
@@ -51,17 +51,10 @@ dist:
 	git checkout-index -a --prefix=release/texcaller-$(VERSION)/
 	$(MAKE) -C release/texcaller-$(VERSION) indep
 	cd release && tar -cf - texcaller-$(VERSION)/ | gzip -9 > texcaller-$(VERSION).tar.gz
-	@echo
-	@echo '---------------------------------------------------------------'
-	@echo 'Upload will start in 5 seconds. Last chance to cancel! (Ctrl+C)'
-	@echo '---------------------------------------------------------------'
-	@echo
-	@sleep 5
 	rsync -rtvz --delete -f 'protect *.tar*' -f 'protect .git' --chmod=u=rwX,go= \
 	    release/texcaller-$(VERSION).tar.gz \
 	    release/texcaller-$(VERSION)/doc/ \
-	    $(UPLOAD_DEST)
-	x-www-browser \
-	    'http://vog.github.io/texcaller/download.html' \
-	    'http://freshmeat.net/projects/texcaller/releases/new'
-
+	    $(RELEASE_DIR)
+	@echo
+	@echo 'Please verify and upload $(RELEASE_DIR)'
+	@echo
