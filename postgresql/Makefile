@@ -1,10 +1,13 @@
 EXTENSION := texcaller
 MODULE_big := texcaller
 OBJS := texcaller_postgresql.o
-DATA := texcaller--0.sql
+DATA_built := texcaller--0.sql
 PG_CONFIG := pg_config
 PGXS := $(shell $(PG_CONFIG) --pgxs)
 include $(PGXS)
+
+texcaller--0.sql: texcaller.sql
+	cp $< $@
 
 check: install
 	# Depending on "install" to ensure that texcaller.so is

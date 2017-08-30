@@ -4,7 +4,7 @@
  *
  *  \par Synopsis
  *
- *  \dontinclude texcaller--0.sql
+ *  \dontinclude texcaller.sql
  *  \skipline (
  *  \skipline (
  *
