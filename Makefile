@@ -19,7 +19,7 @@ all: indep
 	$(MAKE) -C c
 	$(MAKE) -C shell
 	$(MAKE) -C postgresql
-	cd python && python setup.py build_ext --inplace
+	cd python && python3 setup.py build_ext --inplace
 	cd ruby && ruby extconf.rb
 	$(MAKE) -C ruby
 	[ -e php/Makefile ] || { cd php && phpize && ./configure ; }

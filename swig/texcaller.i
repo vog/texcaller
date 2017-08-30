@@ -49,20 +49,24 @@ texcaller.escape_latex(s)
 #ifdef SWIGPYTHON
 
 %pythonprepend convert %{
-    source = source.encode('UTF-8')
-    source_format = source_format.encode('UTF-8')
-    result_format = result_format.encode('UTF-8')
+    if str is bytes:
+        source = source.encode('UTF-8')
+        source_format = source_format.encode('UTF-8')
+        result_format = result_format.encode('UTF-8')
 %}
 %pythonappend convert %{
-    (result, info) = val
-    val = (result, info.decode('UTF-8'))
+    if str is bytes:
+        (result, info) = val
+        val = (result, info.decode('UTF-8'))
 %}
 
 %pythonprepend escape_latex %{
-    s = s.encode('UTF-8')
+    if str is bytes:
+        s = s.encode('UTF-8')
 %}
 %pythonappend escape_latex %{
-    val = val.decode('UTF-8')
+    if str is bytes:
+        val = val.decode('UTF-8')
 %}
 
 #endif
