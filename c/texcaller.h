@@ -253,6 +253,8 @@ cc -o example example.c -ltexcaller
  *      - \c "LaTeX"
  *      - \c "XeTeX"
  *      - \c "XeLaTeX"
+ *      - \c "LuaTeX"
+ *      - \c "LuaLaTeX"
  *
  *  \param result_format
  *      must be one of:
@@ -357,6 +359,8 @@ c++ -o example example.cxx `pkg-config texcaller --cflags --libs`
  *      - \c "LaTeX"
  *      - \c "XeTeX"
  *      - \c "XeLaTeX"
+ *      - \c "LuaTeX"
+ *      - \c "LuaLaTeX"
  *
  *  \param result_format
  *      must be one of:
