@@ -343,6 +343,10 @@ void texcaller_convert(char **result, size_t *result_size, char **info, const ch
         cmd = "pdftex";
     } else if (strcmp(result_format, "PDF") == 0 && strcmp(source_format, "LaTeX") == 0) {
         cmd = "pdflatex";
+    } else if (strcmp(result_format, "PDF") == 0 && strcmp(source_format, "XeTeX") == 0) {
+        cmd = "xetex";
+    } else if (strcmp(result_format, "PDF") == 0 && strcmp(source_format, "XeLaTeX") == 0) {
+        cmd = "xelatex";
     } else {
         *info = sprintf_alloc("Unable to convert from \"%s\" to \"%s\".",
                               source_format, result_format);

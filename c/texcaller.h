@@ -251,10 +251,12 @@ cc -o example example.c -ltexcaller
  *      must be one of:
  *      - \c "TeX"
  *      - \c "LaTeX"
+ *      - \c "XeTeX"
+ *      - \c "XeLaTeX"
  *
  *  \param result_format
  *      must be one of:
- *      - \c "DVI"
+ *      - \c "DVI" (only for source formats \c "TeX" and \c "LaTeX")
  *      - \c "PDF"
  *
  *  \param max_runs
@@ -353,10 +355,12 @@ c++ -o example example.cxx `pkg-config texcaller --cflags --libs`
  *      must be one of:
  *      - \c "TeX"
  *      - \c "LaTeX"
+ *      - \c "XeTeX"
+ *      - \c "XeLaTeX"
  *
  *  \param result_format
  *      must be one of:
- *      - \c "DVI"
+ *      - \c "DVI" (only for source formats \c "TeX" and \c "LaTeX")
  *      - \c "PDF"
  *
  *  \param max_runs
