@@ -337,10 +337,10 @@ void texcaller_convert(char **result, size_t *result_size, char **info, const ch
     /* check arguments */
     if        (strcmp(result_format, "DVI") == 0 && strcmp(source_format, "TeX") == 0) {
         cmd = "tex";
-    } else if (strcmp(result_format, "PDF") == 0 && strcmp(source_format, "TeX") == 0) {
-        cmd = "pdftex";
     } else if (strcmp(result_format, "DVI") == 0 && strcmp(source_format, "LaTeX") == 0) {
         cmd = "latex";
+    } else if (strcmp(result_format, "PDF") == 0 && strcmp(source_format, "TeX") == 0) {
+        cmd = "pdftex";
     } else if (strcmp(result_format, "PDF") == 0 && strcmp(source_format, "LaTeX") == 0) {
         cmd = "pdflatex";
     } else {
