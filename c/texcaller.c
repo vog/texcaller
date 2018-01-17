@@ -421,6 +421,8 @@ void texcaller_convert(char **result, size_t *result_size, char **info, const ch
                    "-no-shell-escape",
                    "texput.tex",
                    NULL);
+            /* exit if execlp() failed */
+            exit(1);
         }
         /* wait for child process */
         for (;;) {
