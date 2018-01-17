@@ -335,13 +335,13 @@ void texcaller_convert(char **result, size_t *result_size, char **info, const ch
     *result_size = 0;
     *info = NULL;
     /* check arguments */
-    if        (strcmp(source_format, "TeX") == 0 && strcmp(result_format, "DVI") == 0) {
+    if        (strcmp(result_format, "DVI") == 0 && strcmp(source_format, "TeX") == 0) {
         cmd = "tex";
-    } else if (strcmp(source_format, "TeX") == 0 && strcmp(result_format, "PDF") == 0) {
+    } else if (strcmp(result_format, "PDF") == 0 && strcmp(source_format, "TeX") == 0) {
         cmd = "pdftex";
-    } else if (strcmp(source_format, "LaTeX") == 0 && strcmp(result_format, "DVI") == 0) {
+    } else if (strcmp(result_format, "DVI") == 0 && strcmp(source_format, "LaTeX") == 0) {
         cmd = "latex";
-    } else if (strcmp(source_format, "LaTeX") == 0 && strcmp(result_format, "PDF") == 0) {
+    } else if (strcmp(result_format, "PDF") == 0 && strcmp(source_format, "LaTeX") == 0) {
         cmd = "pdflatex";
     } else {
         *info = sprintf_alloc("Unable to convert from \"%s\" to \"%s\".",
