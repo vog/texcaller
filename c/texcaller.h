@@ -52,6 +52,15 @@
 git clone https://github.com/vog/texcaller.git
 \endverbatim
  *
+ *  \section release-1_1 Release 1.1
+ *
+ *  <a href="http://vog.github.io/texcaller/texcaller-1.1.tar.gz">Download</a> |
+ *  <a href="https://github.com/vog/texcaller/commits/1.1">ChangeLog</a>
+ *
+ *  This release adds support Xe(La)TeX and Lua(La)Tex.
+ *  The error handling for certain corner cases has been improved.
+ *  Some compiler warnings have been fixed.
+ *
  *  \section release-1_0 Release 1.0
  *
  *  <a href="http://vog.github.io/texcaller/texcaller-1.0.tar.gz">Download</a> |
